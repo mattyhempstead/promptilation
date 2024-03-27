@@ -21,3 +21,21 @@ for i in range(random.randint(1,10)):
 You get the point.
 
 How far can I push this paradigm?
+
+
+## Usage
+
+Execute `pcc` and supply an  input file of type `.promptpy`.
+
+`python pcc --input-file <path to input file>`
+
+
+e.g.
+`python pcc --input-file input/prime.promptpy`
+
+
+This will promptile the code from natural/prompted python down to python.
+
+You should then be able to execute the file.
+
+`python ./build/prime.py`
