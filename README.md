@@ -25,6 +25,11 @@ How far can I push this paradigm?
 
 ## Usage
 
+Instructions via
+`python pcc --help`
+
+
+
 Execute `pcc` and supply an  input file of type `.promptpy`.
 
 `python pcc --input-file <path to input file>`

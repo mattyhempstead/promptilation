@@ -3,6 +3,5 @@ __pycache__
 
 build/
 .env
-input/
 
 venv/

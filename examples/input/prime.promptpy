@@ -1,0 +1,8 @@
+
+read a number as the first argument (call the variable "N")
+
+function is_prime(n): bool
+    return whether n is prime
+
+for all the numbers up to and including N:
+    if that number is_prime then print it
