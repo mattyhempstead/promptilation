@@ -97,9 +97,7 @@ Rather than needing to learn syntax, people learning to program can just start b
 
 If something went wrong, they would be encouraged the fundamental lesson of programming; that you need to tell the computer exactly what to do.
 
-I asked a friend who hadn't programmed before if they could guess what a given promptiled program would do, and then what the original prompt file looks like. They only understood the prompt file, although some forgivably some explanation regarding.
-
-
+As an experiment I asked a friend who hadn't programmed before if they could guess what a given promptiled python program would do and they struggled. I then showed then the original prompt file and it was pretty clear to them. This is probably obvious and doesn't mean much, but it does mean *something* (maybe).
 
 
 ## Examples
