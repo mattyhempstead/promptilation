@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path  # Import pathlib.Path
 
-from pcc import promptile
+from promptiler import promptile
 
 print("Promptiler v0.1")
 print()
@@ -13,8 +13,8 @@ Promptiler is a loose pseudocode compiler powered by LLMs.
 """)
 
 # Add the arguments
-parser.add_argument("--input-file", type=Path, required=True, help="The input file path containing the pseudocode.")  # Change type to Path
-parser.add_argument("--output-dir", type=Path, help="The output directory.", default=Path("build"))  # Change type to Path
+parser.add_argument("--input-file", type=Path, help="The input file path containing the pseudocode.")
+parser.add_argument("--output-dir", type=Path, help="The output directory.", default=Path("build"))
 
 # Extract arguments
 args = parser.parse_args()
