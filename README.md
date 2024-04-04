@@ -6,7 +6,7 @@ What if instead of writing code, you wrote prompts?
 If rather than writing code like
 ```python
 for i in range(1,11):
-	print(i)
+    print(i)
 print("Done")
 ```
 you wrote, compiled, and executed files containing prompts like
@@ -29,14 +29,18 @@ Instructions via `python promptcc --help`
 
 Usage is inspired by C compilers like `gcc`.
 
+`python promptcc --input-file INPUT_FILE_PATH --output-dir OUTPUT_DIR_PATH`
+
+
 Promptilation currently applies only to a single file (`.promptpy`) that is translated into a single Python (`.py`) file. It would not be hard to extend this to multiple files in or multiple files out.
 
 
 To perform promptilation on a single file, execute `promptcc` and supply an input file of type `.promptpy` via the path specified by `INPUT_FILE_PATH`. This will produce a file at `OUTPUT_DIR_PATH` of type `.py`. If no `OUTPUT_DIR_PATH` is specified, `./build` will be used as a default.
 
-`python promptcc --input-file INPUT_FILE_PATH --output-dir OUTPUT_DIR_PATH`
 
-e.g. `python promptcc --input-file input/prime.promptpy`
+**Example**
+
+`python promptcc --input-file input/prime.promptpy --output-dir build`
 
 You should then be able to execute the file.
 
