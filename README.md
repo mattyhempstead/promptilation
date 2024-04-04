@@ -40,7 +40,7 @@ To perform promptilation on a single file, execute `promptcc` and supply an inpu
 
 **Example**
 
-`python promptcc --input-file input/prime.promptpy --output-dir build`
+`python promptcc --input-file prime.promptpy --output-dir build`
 
 You should then be able to execute the file.
 
