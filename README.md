@@ -47,6 +47,13 @@ You should then be able to execute the file.
 `python ./build/prime.py`
 
 
+## How it works
+
+A GPT wrapper so thin it's practically transparent.
+
+Currently just single iteration prompting (see `promptcc/prompt.py`) that tells the LLM to convert pseudocode into working python code.
+
+
 
 ## Inspiration
 
@@ -56,55 +63,71 @@ The advent of good code generation via LLMs has opened up the possibility for an
 
 Unless you have been living under a read lock, you would have already tried working at the prompting layer when you asked ChatGPT to generate some code given a natural language description that you wrote.
 
-Promptilation is about wondering what would happen if we viewed this process as a kind of "compilation" step in the same way you might compile C files to a binary, rather than as simply a coding assistant. It's essentially declarative programming with no theoretical limits to how much control flow you choose to abstract. Any details that are missing will simply be filled in with a best-guess.
+Promptilation is about wondering what would happen if we viewed this process as a kind of "compilation" step in the same way you might compile C files to a binary, rather than as simply a coding assistant.
+It's essentially declarative programming with no theoretical limits to how much control flow you choose to abstract.
+Any details that are missing will simply be filled in with a best-guess.
+If you want the code to work in a particular way, you should state it.
 
-I suppose the documentation for promptilation would look like something like "Any missing details will be filled in via a best guess. If you want the code to work in a particular way, you should state it."
+Promptilation also means all libraries exist and are dynamically generated on an as-need basis.
+Ultimately, the programmer should only need to specify the details that matter and at the abstraction layer that matters. No more. No less.
 
+One encompassing perspective of a code base is just a large collection of nested interfaces communicating with eachother.
+Once the interface requirements have been specified with a prompt, the programmer does not and should not really care how it works.
+
+Are LLMs the solution to all of this? I think it's very possible.
 
 
 ## Issues
 
-It its current form, promptilation is a mostly useless paradigm. It is not much better (arguably worse) that just asking ChatGPT/Copilot to generate code and storing the prompt alongside as documentation.
+It its current form, promptilation is mostly useless. It is arguably worse that just asking ChatGPT/Copilot to generate code and storing the prompt alongside as documentation.
 
-But I claim promptilation is more of a perspective for a future theoretical paradigm, than it is a solution. So far, all I have done is build a crappy seed for what could eventually represent an new way of writing programs.
+But I claim promptilation is more of a direction for a future theoretical programming paradigm. So far, all I have done is build a crappy seed for what could eventually represent a new way of writing programs.
 
-There are numerous issues that need to be resolved before it is of any real use. Some of these are out of our control (LLM accuracy), but many are not (UX).
-
-#### Accuracy
-Regarding accuracy, I personally wouldn't trust an LLM to generate much more than 100 lines of code without me validating it. However, assuming LLM performance continues to increase we might soon reach the point where this is no longer a practical issue (in the rare cases an error occurs, you just "debug" the compiled source).
-
-#### Non-determinism
-This particular compilation process is also not deterministic, although many LLMs let you provide a seed so determinism can be forced if one desires. This probably won't hold over new releases of LLMs.
-
-#### UX
-In my opinion, the primary limitation stopping real use cases is UX.
-
-I see no fundamental reason why we can't write and read code for codebases at the level of prompts, particularly when accuracy is of no real concern relative to the provided specificity of the prompt. Even still, a really high quality prompt debugger (perhaps using LLM summarisation) should resolve this.
-
-Ideally, the programmer should only need to specify the details that matter. One encompassing perspective of a code base is just a large collection of nested interfaces communicating with eachother. Once the interface requirements have been specified, the programmer does not really care how it works.
-
-The risk here is that the user does not specify the requirements correctly. In that case, perhaps the compiler could throw a kind of specificity warning. Maybe like "On line 22 you asked for x to be a random integer, what kind of range were you hoping for?". The response could then be stored for future use, possibly by updating the source prompt.
-
-This iterative feedback loop appears quite important for generating code with ChatGPT, so you would need solve this for promptilation.
+There are numerous issues that need to be resolved before it is of any real use. Some of these are out of our control (LLM accuracy), but imo can be addressed with a good enough UX wrapper.
 
 
 
-### Actual short term use cases?
+### Accuracy
+Regarding accuracy, I personally wouldn't trust an LLM to generate much more than 100 lines of code without me validating it.
+However, assuming LLM performance continues to increase we might soon reach the point where this is no longer a practical issue.
 
-There is some potential for promptilation as an educational tool.
+The primary factor here is how abstract you make your prompts.
+If your prompts translate to only a few lines of source code each, accuracy is not likely to be an issue.
 
-Rather than needing to learn syntax, people learning to program can just start by writing prompts which are compiled and executed directly.
+In the cases an error does occur, a nice UX wrapper to "debug" the compiled source would address this problem.
+The debugger might also itself exist at the level of natural language using some LLM-powered code understanding / natural language summarisation.
 
-If something went wrong, they would be encouraged the fundamental lesson of programming; that you need to tell the computer exactly what to do.
+Further wrappers could be used to automatically generate unit tests (e.g. in isolation from the generated source code) to assist with validating correctness.
 
-As an experiment I asked a friend who hadn't programmed before if they could guess what a given promptiled python program would do and they struggled. I then showed then the original prompt file and it was pretty clear to them. This is probably obvious and doesn't mean much, but it does mean *something* (maybe).
+
+### Non-determinism
+This particular compilation process is also not deterministic, which is an issue as it could cause different outputs on different runs.
+Many LLMs let you provide a seed so determinism can be forced if one desires, however this likely won't hold over new releases of LLMs or updated weights.
+
+Assuming the generated code is technically correct according to the prompt, the primary cause of non-determinism would likely be the user not sufficiently specifying the requirements, causing the LLM to fill in missing details.
+
+One possibility to address this is by having the compiler throw a kind of specificity warning. Something like "On line 22 you asked for x to be a random integer, what kind of range were you hoping for?". The response could then be stored for future use, possibly by updating the source prompt. This iterative feedback loop appears quite important for generating code with ChatGPT, so you would probably need solve this for promptilation.
+
+We could also look into reusing the same results from previous promptilations (and we probably should for efficiency reasons), but ideally we force the determinism inside the prompts themselves.
+
+
+### UX
+In my opinion, the primary limitation stopping promptilation from being usable is UX.
+
+I see no fundamental reason why we can't write and read code for entire codebases at the level of prompts, particularly if problems like accuracy and non-determinism are practically resolved.
+
+In its current form, promptilation is only single file in, single file out.
+What would really improve usability is working out a good UX for OOP, particularly one that allows for reliable classes and dependencies.
+
+A good next step would be figuring out UX for building a simple OOP multi-file game with prompts.
+
 
 
 ## Examples
 
 The following are some real examples of promptilation outputs.
 
-See `./examples/input`
+See `examples/`
 
 ### Simple Code
 
@@ -182,9 +205,7 @@ for num in range(2, N + 1):
         print(num)
 ```
 
+### Classes
 
-## Tech
+*TODO*
 
-A GPT wrapper so thin it's practically transparent.
-
-Just single iteration prompting (see `pcc/prompt.py`) that tells the LLM to convert pseudocode into working python code.
