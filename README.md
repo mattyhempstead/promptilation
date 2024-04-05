@@ -27,7 +27,7 @@ It's also not very good. More of a idea than any actual product, at least for no
 ## Usage
 Instructions via `python promptcc --help`
 
-Usage is inspired by C compilers like `gcc`.
+Usage is similar to regular compilers like `gcc`.
 
 `python promptcc --input-file INPUT_FILE_PATH --output-dir OUTPUT_DIR_PATH`
 
@@ -117,7 +117,7 @@ In my opinion, the primary limitation stopping promptilation from being usable i
 I see no fundamental reason why we can't write and read code for entire codebases at the level of prompts, particularly if problems like accuracy and non-determinism are practically resolved.
 
 In its current form, promptilation is only single file in, single file out.
-What would really improve usability is working out a good UX for OOP, particularly one that allows for reliable classes and dependencies.
+What would really improve usability is working out a good UX for OOP, particularly one that allows for reliable classes and dependencies across multiple prompt files.
 
 A good next step would be figuring out UX for building a simple OOP multi-file game with prompts.
 
